@@ -1,0 +1,7 @@
+# Ignore Node.js specific files and directories
+node_modules/
+npm-debug.log
+.env
+.package-lock.json
+.prettierrc
+.eslintrc.json

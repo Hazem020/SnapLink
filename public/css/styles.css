@@ -1,0 +1,363 @@
+/* Reset default styles and apply global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f2f2f2; /* Light gray background */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  background-color: #424242; /* Dark gray header background */
+  color: white;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 70px; /* Adjusted height of the logo */
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+header a:hover {
+  color: #bdbdbd; /* Light gray on hover */
+}
+
+/* Main content styles */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1,
+h2 {
+  color: #424242; /* Dark gray headings */
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  padding: 2em;
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+label {
+  color: #757575; /* Medium gray label text */
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+input,
+button {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #bdbdbd; /* Light gray border */
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+button {
+  background-color: #424242; /* Dark gray button background */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #616161; /* Medium gray on hover */
+}
+
+/* Table of URLs styles */
+#urlTable {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse; /* Ensure borders collapse properly */
+  margin-top: 1em;
+}
+
+#urlTable th,
+#urlTable td {
+  padding: 1em;
+  border: 1px solid #bdbdbd; /* Light gray border */
+  text-align: center;
+}
+
+#urlTable th {
+  background-color: #f2f2f2; /* Light gray background for header */
+  text-align: center;
+}
+
+#urlTable td {
+  background-color: #ffffff; /* White background */
+  position: relative; /* Ensure position context for nested elements */
+}
+
+#urlTable tbody tr:hover {
+  background-color: #f2f2f2; /* Light gray on hover */
+  transition: background-color 0.5s ease;
+}
+
+#urlTable a {
+  text-decoration: none;
+  color: #424242; /* Dark gray link color */
+  font-weight: bold;
+}
+
+#urlTable a:hover {
+  text-decoration: underline;
+}
+
+#urlTable form {
+  display: inline; /* Display forms inline */
+  margin: 0; /* Remove any default margins */
+}
+
+/* Footer styles */
+footer {
+  background-color: #424242; /* Dark gray footer background */
+  color: white;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+}
+
+/* Sign-up and Sign-in Form Styles */
+.signup-form,
+.signin-form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  padding: 2em;
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.signup-form h2,
+.signin-form h2 {
+  color: #333; /* Dark text color */
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.signup-form label,
+.signin-form label {
+  color: #757575; /* Medium gray label text */
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.signup-form input,
+.signin-form input {
+  width: 100%;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.signup-form button,
+.signin-form button {
+  background-color: #4caf50; /* Green button background */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-form button:hover,
+.signin-form button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* URL Statistics Styles */
+.url-stats {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.url-stats h2 {
+  color: #333; /* Dark text color */
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.url-stats table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.url-stats th,
+.url-stats td {
+  padding: 0.75em;
+  border: 1px solid #ddd; /* Light gray border */
+  text-align: left;
+}
+
+.url-stats th {
+  background-color: #f2f2f2; /* Light gray background for table header */
+  color: #333; /* Dark text color */
+}
+
+.url-stats tbody tr:nth-child(even) {
+  background-color: #ffffff; /* White background for even rows */
+}
+
+.url-stats tbody tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    padding: 0.5em;
+  }
+
+  header img {
+    height: 40px; /* Adjust logo size for smaller screens */
+  }
+
+  header a {
+    margin: 0.5em 0;
+  }
+
+  form,
+  .signup-form,
+  .signin-form {
+    width: 90%;
+    max-width: 100%;
+    padding: 1em;
+  }
+
+  #urlList {
+    width: 100%;
+    padding: 0 1em;
+  }
+
+  .url-stats {
+    width: 90%;
+    padding: 1em;
+  }
+}
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  float: left;
+}
+
+.nav-list li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+}
+
+.nav-list li a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown {
+  float: left;
+}
+
+.dropdown .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #555;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

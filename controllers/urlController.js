@@ -6,7 +6,7 @@ import catchAsync from '../utils/catchAsync.js';
 // Helper function to create a short URL
 const createShortUrl = async () => {
   const shortUrl = nanoid(8);
-  if( await URL.findOne({ shortUrl })) {
+  if (await URL.findOne({ shortUrl })) {
     createShortUrl();
   }
   return shortUrl;
@@ -52,7 +52,7 @@ export const getMyUrls = async (req, res) => {
     const urls = await URL.find({ user: req.user.id });
     res.status(200).json({
       message: 'Success',
-      data: urls,
+      urls: urls,
     });
   } catch (err) {
     return new AppError(err, 500);
@@ -76,7 +76,6 @@ export const getOriginalUrl = async (req, res) => {
     return new AppError(err, 500);
   }
 };
-
 
 // @desc    Delete a short URL
 // @route   DELETE /api/v1/urls/:id
@@ -103,19 +102,19 @@ export const deleteUrl = async (req, res) => {
 // @route   GET /api/v1/urls/stats/:id
 // @access  Private
 export const getStats = async (req, res) => {
-    try {
-        const url = await URL.findById(req.params.id)
-        if (!url) {
-        return res.status(404).json('No URL found');
-        }
-        if (url.user.toString() !== req.user.id) {
-        return res.status(401).json('Not authorized');
-        }
-        res.json({
-        message: 'Success',
-        data: url.visitors,
-        });
-    } catch (err) {
-        return new AppError(err, 500);
+  try {
+    const url = await URL.findById(req.params.id);
+    if (!url) {
+      return res.status(404).json('No URL found');
     }
+    if (url.user.toString() !== req.user.id) {
+      return res.status(401).json('Not authorized');
+    }
+    res.json({
+      message: 'Success',
+      data: url.visitors,
+    });
+  } catch (err) {
+    return new AppError(err, 500);
+  }
 };

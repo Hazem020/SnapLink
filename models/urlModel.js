@@ -22,9 +22,7 @@ const urlSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  
 });
-
 
 // Post hook to increment visitors count when a document is retrieved
 urlSchema.post('findOne', function (doc) {

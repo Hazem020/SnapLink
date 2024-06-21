@@ -7,7 +7,7 @@
   <body>
     <%- include('partials/header') %>
     <h1>Sign Up</h1>
-    <form action="/api/v1/users/signup" method="post">
+    <form id="sigupForm" action="/api/v1/users/signup" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required />
       <br />
@@ -30,4 +30,32 @@
     <a href="/login">Already have an account? Login</a>
     <%- include('partials/footer') %>
   </body>
+  <script>
+    $(document).ready(function () {
+      $('#sigupForm').submit(function (event) {
+        event.preventDefault();
+
+        var formData = {
+          username: $('#username').val(),
+          email: $('#email').val(),
+          password: $('#password').val(),
+          passwordConfirm: $('#passwordConfirm').val(),
+        };
+
+        $.ajax({
+          type: 'POST',
+          url: '/api/v1/users/signup',
+          data: formData,
+          success: function (data) {
+            alert('Thanks for signing up.'); // Display success message
+            window.location.href = '/'; // Redirect to home page
+          },
+          error: function (xhr, status, error) {
+            console.error('Sign up error:', error);
+            alert('Sign up failed. Please try again.'); // Display error message
+          },
+        });
+      });
+    });
+  </script>
 </html>

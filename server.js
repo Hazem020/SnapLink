@@ -9,7 +9,7 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './.env' });
 import app from './app.js';
-mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
+mongoose.connect(process.env.DATABASE).then(() => {
   console.log('DB connection successful!');
 });
 

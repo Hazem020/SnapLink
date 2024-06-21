@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <title>SnapLink</title>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <h1>Welcome to SnapLink , A Short URL Service</h1>
+    <form action="/api/v1/urls/shorten" method="post" id="shortenForm">
+      <label for="OriginalUrl">Enter URL to shorten:</label>
+      <input type="url" id="OriginalUrl" name="OriginalUrl" required />
+      <button type="submit">Shorten</button>
+    </form>
+  </body>
+  <%- include('partials/footer') %>
+  <script>
+    $(document).ready(function () {
+      $('#shortenForm').submit(function (event) {
+        event.preventDefault();
+
+        var formData = {
+          OriginalUrl: $('#OriginalUrl').val(),
+        };
+
+        $.ajax({
+          type: 'POST',
+          url: '/api/v1/urls/shorten',
+          data: JSON.stringify(formData),
+          contentType: 'application/json',
+          success: function (response) {
+            displayShortenedUrl(response.data.shortUrl, formData.OriginalUrl);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error:', error);
+            alert('Failed to shorten URL. Please try again.');
+          },
+        });
+      });
+
+      function displayShortenedUrl(shortUrl, originalUrl) {
+        // Create and display a popup modal
+        var modal = `
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Your original URL:</p>
+            <p>${originalUrl}</p>
+            <p>Shortened URL:</p>
+            <p><a href="${shortUrl}" target="_blank">${shortUrl}</a></p>
+          </div>
+        </div>
+      `;
+
+        $('body').append(modal); // Append modal to the body
+
+        // Close modal when the close button or outside modal is clicked
+        $('.close, .modal').on('click', function () {
+          $('#myModal').remove();
+        });
+
+        // Optionally, you can add additional styling or animations to the modal
+        // For example, centering the modal
+        $('#myModal').css({
+          display: 'block',
+          position: 'fixed',
+          'z-index': '1',
+          left: '0',
+          top: '0',
+          width: '100%',
+          height: '100%',
+          overflow: 'auto',
+          'background-color': 'rgba(0,0,0,0.4)',
+          'padding-top': '60px',
+        });
+
+        $('.modal-content').css({
+          'background-color': '#fefefe',
+          margin: '15% auto',
+          padding: '20px',
+          border: '1px solid #888',
+          width: '80%',
+        });
+      }
+    });
+  </script>
+</html>

@@ -50,7 +50,6 @@ export const login = catchAsync(async (req, res, next) => {
   createAndSendToken(user, 200, req, res);
 });
 
-
 // exports.forgotPassword = catchAsync(async (req, res, next) => {
 //   const user = await User.findOne({ email: req.body.email });
 //   if (!user)
@@ -94,7 +93,7 @@ export const login = catchAsync(async (req, res, next) => {
 //   }
 // });
 
-export  const updatePassword = catchAsync(async (req, res, next) => {
+export const updatePassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user._id).select('+password');
   const correct = await user.checkPassword(
     req.body.passwordCurrent,
@@ -117,7 +116,9 @@ export const auth = catchAsync(async (req, res, next) => {
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
-  if (!token) return next(new AppError('You are not logged in', 401));
+  if (!token) {
+    return next(new AppError('You are not logged in', 401));
+  }
   // 2) Verification token
   const decoded = jwt.verify(token, process.env.JWT_KEY);
   // 3) Check if user still exists
@@ -152,6 +153,7 @@ export const isLoggedIn = catchAsync(async (req, res, next) => {
       return next();
     }
   }
+  res.locals.user = null;
   next();
 });
 
@@ -161,7 +163,6 @@ export const logOut = (req, res) => {
     httpOnly: true,
   });
   res.status(200).json({
-    status: ' success',
+    status: 'success',
   });
 };
-

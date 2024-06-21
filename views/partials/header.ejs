@@ -1,0 +1,40 @@
+<!-- views/partials/header.ejs -->
+<header>
+  <img src="/images/logo.png" alt="Logo" />
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="#">About</a></li>
+      <% if (user) { %>
+      <li><a href="/me">Dashboard</a></li>
+      <li><a id="logoutButton" href="/logout">Logout</a></li>
+      <% } else { %>
+      <li><a href="/signup">Sign Up</a></li>
+      <li><a id="loginButton" href="/login">Login</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#logoutButton').on('click', function (event) {
+      event.preventDefault();
+      $.ajax({
+        url: '/api/v1/users/logout',
+        type: 'POST',
+        success: function (response) {
+          console.log(response);
+          if (response.status === 'success') {
+            window.location.href = '/'; // Redirect to home page
+          } else {
+            alert('Logout failed. Please try again.');
+          }
+        },
+        error: function () {
+          alert('An error occurred. Please try again.');
+        },
+      });
+    });
+  });
+</script>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>URL Stats</title>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <h1>Stats for <%= url.shortUrl %></h1>
+    <p>
+      Original URL: <a href="<%= url.originalUrl %>"><%= url.originalUrl %></a>
+    </p>
+    <p>Click Count: <%= url.visitors %></p>
+    <p>Created At: <%= url.createdAt %></p>
+    <a href="/me">Back to Dashboard</a>
+    <%- include('partials/footer') %>
+  </body>
+</html>

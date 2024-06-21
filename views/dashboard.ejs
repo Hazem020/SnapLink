@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      function deleteUrl(event, id) {
+        event.preventDefault();
+
+        fetch(`/api/v1/urls/${id}`, {
+          method: 'DELETE',
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json(); // Parse JSON response if delete was successful
+            } else {
+              throw new Error('Failed to delete URL'); // Throw error if delete request failed
+            }
+          })
+          .then((data) => {
+            // Display success message or handle further actions
+            alert('URL deleted successfully');
+            event.target.closest('tr').remove(); // Remove the row from the table
+          })
+          .catch((error) => {
+            console.error('Error deleting URL:', error);
+            alert('Failed to delete URL'); // Display error message to user
+          });
+
+        return false;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/api/v1/urls/me')
+          .then((response) => response.json())
+          .then((data) => {
+            const urlTable = document.getElementById('urlTable');
+            data.urls.forEach((url) => {
+              const row = urlTable.insertRow();
+              row.innerHTML = `
+                <td><a target='_blank' href="/stats/${url._id}">${url.shortUrl}</a></td>
+                <td>${url.originalUrl}</td>
+                <td>
+                    <button type="button" onclick="return deleteUrl(event, '${url._id}')">Delete</button>
+                </td>
+              `;
+            });
+          })
+          .catch((error) => {
+            console.error('Error fetching URLs:', error);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <main>
+      <h2>Your Shortened URLs:</h2>
+      <table id="urlTable">
+        <thead>
+          <tr>
+            <th>Short URL</th>
+            <th>Original URL</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- URLs will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

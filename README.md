@@ -59,4 +59,5 @@ SnapLink is your go-to solution for lightning-fast URL shortening! Say goodbye t
    git clone https://github.com/yourusername/snaplink.git
    cd snaplink
 ### [API DOCS](https://documenter.getpostman.com/view/28432116/2s9YytgLx7)
+### [Referance](https://roadmap.sh/projects/url-shortening-service)
 ![Made With JavaScript](https://forthebadge.com/images/badges/made-with-javascript.svg)
